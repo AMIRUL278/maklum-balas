@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wudhu’ Feedback Hub | Your Voice Matters, Your Feedback Creates Improvements</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome untuk Ikon Moden -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            950: '#040B16',
+                            900: '#071326',
+                            800: '#0D2142',
+                            700: '#143366',
+                        },
+                        ocean: {
+                            600: '#0284C7',
+                            500: '#0EA5E9',
+                        },
+                        emerald: {
+                            500: '#10B981',
+                            400: '#34D399',
+                        },
+                        cyan: {
+                            400: '#22D3EE',
+                            300: '#67E8F9',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'ripple': 'ripple 3s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        ripple: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0.8' },
+                            '100%': { transform: 'scale(2.2)', opacity: '0' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Gaya Custom untuk Glassmorphism, Seni Bina Islam & Kesan Air */
+        body {
+            background-color: #040B16;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+
+        /* Corak Geometri Islamik Halus */
+        .islamic-pattern {
+            background-image: radial-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 1px),
+                              radial-gradient(rgba(16, 185, 129, 0.06) 1px, #040B16 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* Kad Glassmorphism Premium */
+        .glass-card {
+            background: rgba(13, 33, 66, 0.45);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(34, 211, 238, 0.18);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-card-hover {
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-6px);
+            background: rgba(20, 51, 102, 0.55);
+            border-color: rgba(34, 211, 238, 0.45);
+            box-shadow: 0 15px 40px -10px rgba(34, 211, 238, 0.25);
+        }
+
+        /* Ikon 3D Gaya Glossy */
+        .icon-3d {
+            background: linear-gradient(135deg, rgba(34, 211, 238, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                        0 10px 20px -5px rgba(2, 132, 199, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Butang Bercahaya */
+        .btn-glow {
+            background: linear-gradient(135deg, #0284C7 0%, #10B981 100%);
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 6px 28px rgba(34, 211, 238, 0.55);
+            transform: translateY(-2px);
+        }
+
+        /* Teks Gradient */
+        .text-gradient {
+            background: linear-gradient(to right, #67E8F9, #34D399, #38BDF8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Bar Progress Bacaan */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, #22D3EE, #10B981);
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s ease-out;
+        }
+
+        /* Kanvas Latar Belakang 3D Air */
+        #water-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.65;
+        }
+
+        /* Animasi Loading Skrin */
+        #loader-overlay {
+            position: fixed;
+            inset: 0;
+            background: #040B16;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        /* Gaya Accordion FAQ */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease-out;
+        }
+    </style>
+</head>
+<body class="islamic-pattern antialiased selection:bg-cyan-500 selection:text-navy-950">
+
+    <!-- ========================================================================= -->
+    <!-- KONFIGURASI PENTADBIR JOTFORM (SILA UBAH URL DI BAWAH SELEPAS BINA BORANG) -->
+    <!-- ========================================================================= -->
+    <script>
+        /**
+         * PANDUAN KONFIGURASI ADMIN:
+         * 1. Gantikan nilai JOTFORM_FORM_URL dengan pautan borang Jotform sebenar anda.
+         *    Contoh: "https://form.jotform.com/241234567890123"
+         * 2. Gantikan nilai JOTFORM_ADMIN_INBOX_URL dengan pautan Jotform Inbox anda.
+         *    Contoh: "https://www.jotform.com/inbox/241234567890123"
+         * 3. JANGAN masukkan API Key atau kata laluan di sini.
+         */
+        const CONFIG = {
+            JOTFORM_FORM_URL: "https://form.jotform.com/263290581603052",
+            JOTFORM_ADMIN_INBOX_URL: "https://www.jotform.com/inbox/263290581603052"
+        };
+
+        // Pengendali selamat apabila iframe Jotform selesai dimuatkan
+        function handleIframeLoad() {
+            const iframe = document.getElementById('JotFormIFrame');
+            const srcAttr = iframe ? iframe.getAttribute('src') : '';
+            if (iframe && srcAttr && srcAttr.startsWith('https://')) {
+                const section = document.getElementById('borang-jotform');
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+    </script>
+
+    <!-- Skrin Loading Elegan -->
+    <div id="loader-overlay">
+        <div class="relative flex items-center justify-center w-24 h-24">
+            <div class="absolute inset-0 rounded-full border-2 border-cyan-400/40 animate-ping"></div>
+            <div class="w-16 h-16 rounded-2xl icon-3d flex items-center justify-center text-cyan-300 text-3xl">
+                <i class="fa-solid fa-droplet animate-bounce"></i>
+            </div>
+        </div>
+        <p class="mt-4 font-display text-sm tracking-widest uppercase text-cyan-300">Memuatkan Wudhu’ Feedback Hub...</p>
+    </div>
+
+    <!-- Bar Progress Tatalan (Scroll Progress) -->
+    <div id="scroll-progress"></div>
+
+    <!-- Kanvas Animasi Zarah & Riak Air Interaktif -->
+    <canvas id="water-canvas"></canvas>
+
+    <!-- Navigasi Utama -->
+    <header class="sticky top-0 z-50 glass-card border-b border-cyan-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Logo & Jenama -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl icon-3d flex items-center justify-center text-cyan-300 group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-droplet text-lg sm:text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-display font-extrabold text-base sm:text-lg tracking-tight text-white block leading-none">
+                            WUDHU’ <span class="text-cyan-400">FEEDBACK HUB</span>
+                        </span>
+                        <span class="text-[11px] text-emerald-400 font-medium tracking-wide hidden sm:block">
+                            Digital Islamic Learning Experience
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Menu Desktop -->
+                <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                    <a href="#kepentingan" class="hover:text-cyan-300 transition-colors">Kepentingan</a>
+                    <a href="#panduan-soalan" class="hover:text-cyan-300 transition-colors">Struktur Penilaian</a>
+                    <a href="#borang-jotform" class="hover:text-cyan-300 transition-colors">Borang Maklum Balas</a>
+                    <a href="#faq" class="hover:text-cyan-300 transition-colors">Soalan Lazim</a>
+                </nav>
+
+                <!-- Butang Akses Admin -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="openAdminModal()" class="px-3.5 py-2 rounded-xl bg-navy-800/90 hover:bg-navy-700 border border-cyan-400/30 text-xs sm:text-sm font-semibold text-cyan-300 flex items-center gap-2 transition-all shadow-lg">
+                        <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+                        <span>ADMIN ACCESS</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========================================================================= -->
+    <!-- BAHAGIAN 1: HERO / PEMBUKAAN                                              -->
+    <!-- ========================================================================= -->
+    <section class="relative pt-12 pb-20 sm:pt-20 sm:pb-28 overflow-hidden">
+        <!-- Cahaya Latar Belakang (Ambient Glow) -->
+        <div class="absolute top-10 left-1/4 w-72 h-72 bg-cyan-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-1/4 w-80 h-80 bg-emerald-500/15 rounded-full blur-[130px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Teks Utama Hero -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs sm:text-sm font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                        <span>Your Voice Matters, Your Feedback Creates Improvements</span>
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.15] mb-4">
+                        WUDHU’ <br class="hidden sm:inline" />
+                        <span class="text-gradient">FEEDBACK HUB</span>
+                    </h1>
+
+                    <p class="font-display font-bold text-xl sm:text-2xl text-emerald-400 mb-6">
+                        “Satu Maklum Balas, Seribu Penambahbaikan!”
+                    </p>
+
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-8">
+                        Terima kasih kerana meneroka laman pembelajaran interaktif saya! Sekarang, saya ingin mendengar suara anda. Kongsikan pengalaman, pandangan, kritikan dan cadangan anda bagi membantu meningkatkan kualiti pembelajaran digital Pendidikan Islam bertajuk <strong>Berwuduk</strong>.
+                    </p>
+
+                    <!-- Dua Butang Tindakan Utama -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#borang-jotform" class="w-full sm:w-auto px-7 py-4 rounded-2xl btn-glow text-white font-display font-bold text-sm sm:text-base flex items-center justify-center gap-3">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>BERIKAN MAKLUM BALAS</span>
+                        </a>
+                        <a href="#kepentingan" class="w-full sm:w-auto px-7 py-4 rounded-2xl glass-card hover:bg-navy-800/80 text-cyan-200 font-display font-semibold text-sm sm:text-base flex items-center justify-center gap-3 transition-all border border-cyan-400/30">
+                            <i class="fa-solid fa-circle-question text-cyan-400"></i>
+                            <span>KENAPA MAKLUM BALAS ANDA PENTING?</span>
+                        </a>
+                    </div>
+
+                    <!-- Sasaran Pengguna -->
+                    <div class="mt-10 pt-6 border-t border-slate-800/80 flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-slate-400">
+                        <span class="font-semibold text-slate-300">Terbuka Kepada:</span>
+                        <span class="px-3 py-1 rounded-lg bg-navy-800/70 border border-slate-700/70"><i class="fa-solid fa-child-reaching text-cyan-400 mr-1.5"></i>Murid Sekolah Rendah</span>
+                        <span class="px-3 py-1 rounded-lg bg-navy-800/70 border border-slate-700/70"><i class="fa-solid fa-graduation-cap text-emerald-400 mr-1.5"></i>Pelajar IPG / IPT</span>
+                        <span class="px-3 py-1 rounded-lg bg-navy-800/70 border border-slate-700/70"><i class="fa-solid fa-chalkboard-user text-sky-400 mr-1.5"></i>Guru & Pensyarah</span>
+                    </div>
+                </div>
+
+                <!-- Visual 3D Interaktif Titisan Air & Seni Bina Islam Moden -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md aspect-square flex items-center justify-center">
+                        <!-- Gelung Riak Air Beranimasi -->
+                        <div class="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-cyan-400/30 animate-ripple"></div>
+                        <div class="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full border border-emerald-400/20 animate-ripple" style="animation-delay: 1.5s;"></div>
+
+                        <!-- Bingkai Geometri Islamik Oktagon -->
+                        <div class="relative w-72 h-72 sm:w-80 sm:h-80 glass-card rounded-[2.5rem] rotate-6 flex items-center justify-center p-6 animate-float">
+                            <div class="w-full h-full rounded-[2rem] border border-cyan-300/30 -rotate-6 flex flex-col items-center justify-center text-center p-6 bg-gradient-to-b from-navy-800/80 to-navy-950/90 relative overflow-hidden">
+                                
+                                <!-- SVG Titisan Air HD 3D -->
+                                <svg class="w-28 h-28 sm:w-32 sm:h-32 drop-shadow-[0_15px_25px_rgba(34,211,238,0.45)] mb-4" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="waterGrad" x1="40" y1="20" x2="160" y2="180" gradientUnits="userSpaceOnUse">
+                                            <stop offset="0%" stop-color="#67E8F9"/>
+                                            <stop offset="50%" stop-color="#0284C7"/>
+                                            <stop offset="100%" stop-color="#10B981"/>
+                                        </linearGradient>
+                                        <radialGradient id="shine" cx="35%" cy="30%" r="50%">
+                                            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.9"/>
+                                            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+                                        </radialGradient>
+                                    </defs>
+                                    <path d="M100 18C100 18 42 88 42 130C42 162.033 67.9675 188 100 188C132.033 188 158 162.033 158 130C158 88 100 18 100 18Z" fill="url(#waterGrad)"/>
+                                    <ellipse cx="78" cy="112" rx="14" ry="26" transform="rotate(-20 78 112)" fill="url(#shine)"/>
+                                    <circle cx="70" cy="148" r="6" fill="#FFFFFF" fill-opacity="0.6"/>
+                                </svg>
+
+                                <h3 class="font-display font-bold text-lg text-white">Modul Pembelajaran Berwuduk</h3>
+                                <p class="text-xs text-cyan-300 mt-1">Pendidikan Islam Interaktif • Jotform Edition</p>
+                                
+                                <!-- Lencana Terapung -->
+                                <div class="mt-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-medium">
+                                    <i class="fa-solid fa-database"></i>
+                                    <span>Rekod Masa Nyata Jotform</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Elemen Terapung Kecil 1 -->
+                        <div class="absolute -top-2 right-4 sm:right-6 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-2.5 animate-float-delayed">
+                            <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[11px] text-slate-400">Penilaian Anda</p>
+                                <p class="text-xs font-bold text-white">100% Dihargai</p>
+                            </div>
+                        </div>
+
+                        <!-- Elemen Terapung Kecil 2 -->
+                        <div class="absolute -bottom-3 left-2 sm:left-4 glass-card px-4 py-2.5 rounded-2xl flex items-center gap-2.5 animate-float">
+                            <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center">
+                                <i class="fa-solid fa-lightbulb"></i>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[11px] text-slate-400">Inovasi PdP</p>
+                                <p class="text-xs font-bold text-white">Berterusan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BAHAGIAN 2: KEPENTINGAN MAKLUM BALAS (4 KAD INTERAKTIF 3D)                 -->
+    <!-- ========================================================================= -->
+    <section id="kepentingan" class="py-16 sm:py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-cyan-400 font-display font-bold text-xs sm:text-sm uppercase tracking-widest">Impak Suara Anda</span>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white mt-2 mb-4">
+                    Kenapa Maklum Balas Anda Sangat Penting?
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base">
+                    Klik pada setiap kad di bawah untuk melihat bagaimana pandangan anda memacu transformasi bahan pembelajaran digital tajuk <strong>Berwuduk</strong>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Kad 1: Meningkatkan Kualiti -->
+                <div onclick="toggleCardHighlight(this)" class="glass-card glass-card-hover rounded-3xl p-6 sm:p-7 cursor-pointer relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl icon-3d flex items-center justify-center text-2xl text-cyan-300 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3">Meningkatkan Kualiti</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Membantu memperbaiki kandungan, ketepatan dalil, audio bacaan niat dan visual bahan pembelajaran.
+                    </p>
+                    <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-cyan-400 font-medium">
+                        <span>Kualiti Kandungan</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Kad 2: Mengenal Pasti Kelemahan -->
+                <div onclick="toggleCardHighlight(this)" class="glass-card glass-card-hover rounded-3xl p-6 sm:p-7 cursor-pointer relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl icon-3d flex items-center justify-center text-2xl text-emerald-400 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-magnifying-glass-chart"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3">Mengenal Pasti Kelemahan</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Mengetahui bahagian rukun atau sunat wuduk yang sukar difahami atau paparan teknikal yang kurang berkesan.
+                    </p>
+                    <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-emerald-400 font-medium">
+                        <span>Analisis Masalah</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Kad 3: Pengalaman Lebih Baik -->
+                <div onclick="toggleCardHighlight(this)" class="glass-card glass-card-hover rounded-3xl p-6 sm:p-7 cursor-pointer relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl icon-3d flex items-center justify-center text-2xl text-sky-300 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3">Pengalaman Lebih Baik</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Menjadikan pembelajaran lebih menarik, interaktif, mesra pengguna serta mudah diakses di telefon pintar dan komputer.
+                    </p>
+                    <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-sky-300 font-medium">
+                        <span>Mesra Pengguna</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Kad 4: Inovasi Berterusan -->
+                <div onclick="toggleCardHighlight(this)" class="glass-card glass-card-hover rounded-3xl p-6 sm:p-7 cursor-pointer relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl icon-3d flex items-center justify-center text-2xl text-teal-300 mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-rocket"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white mb-3">Inovasi Berterusan</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Membantu menghasilkan pengalaman pembelajaran digital Pendidikan Islam yang lebih segar dan berimpak tinggi.
+                    </p>
+                    <div class="pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-teal-300 font-medium">
+                        <span>Masa Depan PdP</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BAHAGIAN 3: GAMBARAN STRUKTUR PENILAIAN (SEKSYEN A - E)                   -->
+    <!-- ========================================================================= -->
+    <section id="panduan-soalan" class="py-12 sm:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-cyan-500/25">
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-slate-700/70">
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/15 text-emerald-300 text-xs font-bold uppercase tracking-wider">Panduan Pengisian</span>
+                        <h2 class="font-display font-bold text-2xl sm:text-3xl text-white mt-2">
+                            5 Seksyen Penilaian Komprehensif
+                        </h2>
+                        <p class="text-slate-300 text-sm mt-1">
+                            Borang maklum balas merangkumi lima bahagian utama bagi memastikan setiap aspek dinilai secara menyeluruh.
+                        </p>
+                    </div>
+                    <!-- Tab Penukar Pratonton Seksyen -->
+                    <div class="flex flex-wrap gap-2" id="section-tabs">
+                        <button onclick="showSectionPreview('A')" class="tab-btn active px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-navy-950 transition-all" data-tab="A">Seksyen A</button>
+                        <button onclick="showSectionPreview('B')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-300 hover:bg-navy-700 transition-all" data-tab="B">Seksyen B</button>
+                        <button onclick="showSectionPreview('C')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-300 hover:bg-navy-700 transition-all" data-tab="C">Seksyen C</button>
+                        <button onclick="showSectionPreview('D')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-300 hover:bg-navy-700 transition-all" data-tab="D">Seksyen D</button>
+                        <button onclick="showSectionPreview('E')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-300 hover:bg-navy-700 transition-all" data-tab="E">Seksyen E</button>
+                    </div>
+                </div>
+
+                <!-- Kandungan Pratonton Seksyen -->
+                <div id="section-preview-box" class="bg-navy-950/70 rounded-2xl p-6 border border-slate-800">
+                    <!-- Diisi secara dinamik oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BAHAGIAN 4: INTEGRASI BORANG JOTFORM SEBENAR (WAJIB BERFUNGSI)            -->
+    <!-- ========================================================================= -->
+    <section id="borang-jotform" class="py-16 sm:py-24 relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Tajuk Bahagian Borang -->
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-semibold mb-3">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span>Integrasi Langsung Pangkalan Data Jotform</span>
+                </div>
+                <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-white">
+                    Borang Maklum Balas Digital
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mt-3">
+                    “Jangan takut untuk memberikan kritikan! Setiap pandangan anda amat bermakna dalam usaha menghasilkan pengalaman pembelajaran yang lebih baik.”
+                </p>
+            </div>
+
+            <!-- Bekas Utama Borang Jotform -->
+            <div class="glass-card rounded-3xl overflow-hidden border border-cyan-400/30 shadow-2xl">
+                
+                <!-- Bar Status Integrasi -->
+                <div class="bg-navy-900/90 px-6 py-4 border-b border-slate-700/80 flex flex-wrap items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span id="status-dot" class="w-3 h-3 rounded-full bg-amber-400"></span>
+                        <span id="status-text" class="text-xs sm:text-sm font-semibold text-slate-200">
+                            Menyemak sambungan Jotform...
+                        </span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-slate-400">
+                        <i class="fa-solid fa-lock text-emerald-400"></i>
+                        <span>Penghantaran Selamat & Sulit</span>
+                    </div>
+                </div>
+
+                <!-- KONTENA 1: ARAHAN JIKA URL JOTFORM BELUM DIMASUKKAN (NO FAKE FORM) -->
+                <div id="jotform-setup-notice" class="hidden p-6 sm:p-10">
+                    <div class="bg-amber-500/10 border border-amber-400/40 rounded-2xl p-6 sm:p-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-2xl shrink-0">
+                                <i class="fa-solid fa-triangle-exclamation"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-display font-bold text-lg sm:text-xl text-amber-300">
+                                    Integrasi Borang Jotform Belum Disambungkan
+                                </h3>
+                                <p class="text-slate-200 text-sm mt-2 leading-relaxed">
+                                    Sistem ini direka untuk menyimpan rekod maklum balas secara terus ke dalam akaun <strong>Jotform</strong> sebenar pemilik laman (tanpa menggunakan penyimpanan palsu). Sila lengkapkan sambungan URL borang Jotform untuk mengaktifkan paparan borang.
+                                </p>
+                                
+                                <div class="mt-5 bg-navy-950/90 rounded-xl p-4 border border-slate-700 text-xs sm:text-sm font-mono text-cyan-300 overflow-x-auto">
+                                    <p class="text-slate-400 mb-1">// Buka fail HTML ini dan kemas kini pemboleh ubah CONFIG di bahagian atas:</p>
+                                    <p>JOTFORM_FORM_URL: <span class="text-emerald-400">"https://form.jotform.com/ID_BORANG_ANDA"</span></p>
+                                </div>
+
+                                <div class="mt-6 flex flex-wrap gap-3">
+                                    <button onclick="openAdminGuideModal()" class="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-navy-950 font-bold text-xs sm:text-sm transition-colors flex items-center gap-2">
+                                        <i class="fa-solid fa-book-open"></i>
+                                        <span>Lihat Panduan Lengkap Pembinaan Borang Jotform</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KONTENA 2: IFRAME JOTFORM SEBENAR -->
+                <div id="jotform-iframe-wrapper" class="hidden bg-white">
+                    <iframe
+                        id="JotFormIFrame"
+                        title="Borang Maklum Balas Wudhu' Feedback Hub"
+                        onload="handleIframeLoad()"
+                        allowtransparency="true"
+                        allow="geolocation; microphone; camera; fullscreen"
+                        frameborder="0"
+                        style="min-width:100%;max-width:100%;height:1450px;border:none;"
+                        scrolling="yes">
+                    </iframe>
+                </div>
+
+                <!-- Notis Privasi & Persetujuan Pengguna -->
+                <div class="bg-navy-950/90 px-6 py-5 border-t border-slate-800 text-xs text-slate-400 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-user-shield text-cyan-400 text-base mt-0.5"></i>
+                        <p class="leading-relaxed">
+                            <strong class="text-slate-200">Notis Privasi & Keselamatan Data:</strong> Segala maklumat yang dihantar hanya digunakan untuk tujuan penilaian dan penambahbaikan bahan pembelajaran Pendidikan Islam (Berwuduk). Rekod disimpan secara selamat dalam akaun Jotform pemilik dan tidak didedahkan kepada umum. Tiada maklumat sensitif seperti nombor kad pengenalan atau alamat rumah diminta.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BAHAGIAN 5: FAQ INTERAKTIF (ACCORDION)                                    -->
+    <!-- ========================================================================= -->
+    <section id="faq" class="py-16 sm:py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-emerald-400 font-display font-bold text-xs uppercase tracking-widest">Bantuan & Pertanyaan</span>
+                <h2 class="font-display font-extrabold text-3xl text-white mt-2">Soalan Lazim (FAQ)</h2>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-bold text-white hover:text-cyan-300 transition-colors">
+                        <span>Siapakah yang boleh mengisi borang maklum balas ini?</span>
+                        <i class="fa-solid fa-chevron-down text-cyan-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-slate-300 text-sm">
+                        <p class="pb-5 leading-relaxed">
+                            Borang ini terbuka kepada semua pengguna yang telah meneroka bahan pembelajaran interaktif Berwuduk, termasuk murid sekolah rendah, pelajar IPG/IPT, guru, pensyarah serta ibu bapa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-bold text-white hover:text-cyan-300 transition-colors">
+                        <span>Ke manakah maklum balas saya dihantar dan disimpan?</span>
+                        <i class="fa-solid fa-chevron-down text-cyan-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-slate-300 text-sm">
+                        <p class="pb-5 leading-relaxed">
+                            Setiap maklum balas yang anda hantar akan diproses terus oleh sistem Jotform rasmi dan direkodkan secara sistematik ke dalam Jotform Tables dan Jotform Inbox milik pembangun bahan pembelajaran ini.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-bold text-white hover:text-cyan-300 transition-colors">
+                        <span>Adakah maklumat peribadi saya selamat dan dilindungi?</span>
+                        <i class="fa-solid fa-chevron-down text-cyan-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-slate-300 text-sm">
+                        <p class="pb-5 leading-relaxed">
+                            Ya. Kami hanya meminta maklumat asas seperti nama, kelas/unit dan kategori pengguna. Rekod maklum balas tidak dipaparkan secara awam dan hanya boleh diakses oleh pentadbir melalui log masuk keselamatan Jotform.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden">
+                    <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 font-display font-bold text-white hover:text-cyan-300 transition-colors">
+                        <span>Bolehkah saya memberikan kritikan atau cadangan penambahbaikan?</span>
+                        <i class="fa-solid fa-chevron-down text-cyan-400 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content px-6 text-slate-300 text-sm">
+                        <p class="pb-5 leading-relaxed">
+                            Sangat dialu-alukan! Seksyen D dalam borang disediakan khas untuk anda menulis aspek yang disukai, kelemahan yang ditemui serta cadangan penambahbaikan bagi menjadikan modul Berwuduk ini lebih cemerlang.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- BAHAGIAN 6: PAPARAN PENUTUP & PENGHARGAAN                                 -->
+    <!-- ========================================================================= -->
+    <footer class="relative pt-20 pb-12 overflow-hidden border-t border-cyan-500/20 bg-gradient-to-b from-navy-950 to-[#02060D]">
+        <!-- Cahaya lembut penutup -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-64 bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <!-- Ikon Titisan Air Penghargaan -->
+            <div class="w-16 h-16 mx-auto rounded-2xl icon-3d flex items-center justify-center text-cyan-300 text-3xl mb-6 animate-float">
+                <i class="fa-solid fa-hand-holding-droplet"></i>
+            </div>
+
+            <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white tracking-tight mb-4">
+                TERIMA KASIH KERANA MENJADI SEBAHAGIAN DARIPADA PERUBAHAN!
+            </h2>
+
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto mb-10">
+                “Setiap maklum balas membawa makna. Setiap kritikan membuka ruang penambahbaikan. Terima kasih kerana meluangkan masa untuk membantu saya menghasilkan pengalaman pembelajaran digital yang lebih menarik, berkesan dan berkualiti.”
+            </p>
+
+            <!-- Mesej Penghargaan Khas Apabila Pengguna Selesai Membaca Halaman -->
+            <div id="reader-appreciation-badge" class="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-medium mb-12 opacity-0 transition-opacity duration-700">
+                <i class="fa-solid fa-heart text-rose-400 animate-pulse"></i>
+                <span>Jazakumullahu Khairan Kathira atas kesudian anda menyokong inovasi Pendidikan Islam!</span>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+                <p class="font-display font-semibold text-slate-300">
+                    Wudhu’ Feedback Hub | Digital Islamic Learning Experience
+                </p>
+                <div class="flex items-center gap-4">
+                    <button onclick="openAdminGuideModal()" class="hover:text-cyan-300 transition-colors underline">
+                        Nota Konfigurasi Admin
+                    </button>
+                    <span>•</span>
+                    <button onclick="openAdminModal()" class="hover:text-emerald-300 transition-colors">
+                        Portal Jotform Inbox
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Butang Scroll-To-Top -->
+    <button id="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Kembali ke atas" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-2xl btn-glow text-white flex items-center justify-center shadow-xl opacity-0 invisible transition-all duration-300">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 1: PANEL AKSES ADMIN (PAUTAN TERUS KE JOTFORM INBOX)                -->
+    <!-- ========================================================================= -->
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy-950/80 backdrop-blur-md">
+        <div class="glass-card max-w-lg w-full rounded-3xl p-6 sm:p-8 border border-cyan-400/40 relative animate-fadeIn">
+            <button onclick="closeAdminModal()" class="absolute top-5 right-5 w-9 h-9 rounded-xl bg-navy-800 text-slate-300 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-5">
+                <div class="w-12 h-12 rounded-2xl icon-3d flex items-center justify-center text-emerald-400 text-xl">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h3 class="font-display font-bold text-xl text-white">Panel Akses Pentadbir</h3>
+                    <p class="text-xs text-cyan-300">Pengurusan Rekod Rasmi Jotform Inbox</p>
+                </div>
+            </div>
+
+            <p class="text-slate-300 text-sm leading-relaxed mb-5">
+                Demi keselamatan dan privasi data responden, semua rekod maklum balas disimpan secara sulit dalam akaun <strong>Jotform</strong> anda. Sila log masuk ke akaun Jotform untuk:
+            </p>
+
+            <ul class="space-y-2 text-xs sm:text-sm text-slate-200 bg-navy-950/70 p-4 rounded-2xl border border-slate-800 mb-6">
+                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-400"></i> Melihat semua maklum balas & nama responden</li>
+                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-400"></i> Membaca kritikan, cadangan & penilaian bintang</li>
+                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-400"></i> Menyemak tarikh/masa, menapis & mencari rekod</li>
+                <li class="flex items-center gap-2.5"><i class="fa-solid fa-check text-emerald-400"></i> Memuat turun laporan dalam format PDF, Excel atau CSV</li>
+            </ul>
+
+            <div id="admin-url-warning" class="hidden mb-4 p-3.5 rounded-xl bg-amber-500/15 border border-amber-400/40 text-xs text-amber-200">
+                <i class="fa-solid fa-circle-info mr-1"></i>
+                Pautan <strong>JOTFORM_ADMIN_INBOX_URL</strong> masih menggunakan nilai lalai. Sila kemas kini URL dalam kod sebelum membuka Inbox anda.
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <a id="admin-inbox-link" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 px-5 rounded-xl btn-glow text-white font-display font-bold text-sm text-center flex items-center justify-center gap-2">
+                    <span>BUKA JOTFORM INBOX</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <button onclick="closeAdminModal(); openAdminGuideModal();" class="py-3.5 px-4 rounded-xl bg-navy-800 hover:bg-navy-700 text-cyan-300 font-semibold text-xs sm:text-sm border border-cyan-400/30">
+                    Panduan Setup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- MODAL 2: NOTA LENGKAP PENTADBIR (PANDUAN INTEGRASI JOTFORM)               -->
+    <!-- ========================================================================= -->
+    <div id="admin-guide-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-navy-950/85 backdrop-blur-md">
+        <div class="glass-card max-w-3xl w-full max-h-[88vh] overflow-y-auto rounded-3xl p-6 sm:p-8 border border-cyan-400/40 relative">
+            <button onclick="closeAdminGuideModal()" class="sticky top-0 float-right w-9 h-9 rounded-xl bg-navy-800 text-slate-300 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3 class="font-display font-extrabold text-2xl text-white mb-2">
+                Nota Pentadbir: Panduan Integrasi Jotform
+            </h3>
+            <p class="text-xs sm:text-sm text-cyan-300 mb-6">
+                Ikuti langkah-langkah di bawah untuk menyambungkan borang Jotform sebenar ke laman Wudhu’ Feedback Hub ini.
+            </p>
+
+            <div class="space-y-6 text-sm text-slate-200">
+                <!-- Langkah 1 -->
+                <div class="bg-navy-950/80 p-5 rounded-2xl border border-slate-800">
+                    <h4 class="font-display font-bold text-emerald-400 mb-2">1. Senarai Medan Yang Perlu Dibina dalam Jotform Form Builder</h4>
+                    <p class="text-xs text-slate-300 mb-3">Log masuk ke akaun Jotform anda, klik <strong>Create Form &rarr; Start From Scratch &rarr; Classic Form</strong>, dan masukkan medan berikut:</p>
+                    <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-300">
+                        <li><strong>Seksyen A (Maklumat Diri):</strong> Nama Penuh (Short Text), Kelas / Unit (Short Text), Institusi / Sekolah (Short Text - Optional), Kategori Pengguna (Single Choice: Murid, Pelajar IPG / IPT, Guru, Pensyarah, Lain-lain).</li>
+                        <li><strong>Seksyen B (Penilaian Keberkesanan - Star Rating 1-5 / Input Table):</strong>
+                            1) Mudah difahami, 2) Reka bentuk & grafik menarik, 3) Susunan maklumat tersusun, 4) Aktiviti & permainan membantu, 5) Mudah digunakan di telefon/komputer, 6) Membantu memahami tajuk berwuduk, 7) Pengalaman keseluruhan.
+                        </li>
+                        <li><strong>Seksyen C (Pengalaman Pembelajaran - Single Choice):</strong>
+                            1) Tahap membantu kefahaman, 2) Bahagian paling menarik minat, 3) Masalah yang dihadapi.
+                        </li>
+                        <li><strong>Seksyen D (Kritikan & Cadangan - Long Text / Textarea):</strong>
+                            1) Aspek paling disukai, 2) Kelemahan/kekurangan, 3) Cadangan penambahbaikan, 4) Komen tambahan kepada pembangun.
+                        </li>
+                        <li><strong>Seksyen E (Penilaian Keseluruhan):</strong> Cadangan kepada rakan (Single Choice), Penilaian Keseluruhan (Star Rating 1-5), dan Kotak Persetujuan Privasi (Terms & Conditions / Multiple Choice).</li>
+                    </ul>
+                </div>
+
+                <!-- Langkah 2 -->
+                <div class="bg-navy-950/80 p-5 rounded-2xl border border-slate-800">
+                    <h4 class="font-display font-bold text-cyan-400 mb-2">2. Bahagian Kod Yang Perlu Ditukar (Form URL & Admin Inbox URL)</h4>
+                    <p class="text-xs text-slate-300 mb-2">Dalam Jotform, pergi ke tab <strong>Publish &rarr; Quick Share &rarr; Copy Link</strong>. Kemudian buka kod HTML laman ini dan cari bahagian <code class="text-cyan-300">const CONFIG</code> di bahagian atas:</p>
+                    <pre class="bg-black/60 p-3.5 rounded-xl text-xs text-emerald-300 overflow-x-auto">const CONFIG = {
+    JOTFORM_FORM_URL: "https://form.jotform.com/241234567890123",
+    JOTFORM_ADMIN_INBOX_URL: "https://www.jotform.com/inbox/241234567890123"
+};</pre>
+                </div>
+
+                <!-- Langkah 3 -->
+                <div class="bg-navy-950/80 p-5 rounded-2xl border border-slate-800">
+                    <h4 class="font-display font-bold text-sky-400 mb-2">3. Memastikan Rekod Masuk ke Jotform Tables & Inbox</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Pastikan status borang anda dalam Jotform ditetapkan kepada <strong>Public Form</strong> (di bawah tab Publish &rarr; Settings). Setiap kali pengguna menekan butang <em>Submit</em> pada borang yang dibenamkan, data akan terus dihantar ke pelayan Jotform dan muncul serta-merta dalam <strong>Jotform Tables</strong> dan <strong>Jotform Inbox</strong> akaun anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- SKRIP INTERAKTIF, ANIMASI AIR & INTEGRASI JOTFORM                         -->
+    <!-- ========================================================================= -->
+    <script>
+        // 1. Hilangkan Skrin Loading Selepas Laman Sedia
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader-overlay');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 500);
+
+            initJotformIntegration();
+            showSectionPreview('A');
+            initWaterCanvas();
+        });
+
+        // 2. Pengurusan Integrasi Jotform Sebenar
+        function initJotformIntegration() {
+            const formUrl = CONFIG.JOTFORM_FORM_URL.trim();
+            const inboxUrl = CONFIG.JOTFORM_ADMIN_INBOX_URL.trim();
+            
+            const isFormConfigured = formUrl.startsWith("https://") && !formUrl.includes("MASUKKAN_ID_BORANG_ANDA");
+            const isInboxConfigured = inboxUrl.startsWith("https://") && !inboxUrl.includes("MASUKKAN_ID_BORANG_ANDA");
+
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            const setupNotice = document.getElementById('jotform-setup-notice');
+            const iframeWrapper = document.getElementById('jotform-iframe-wrapper');
+            const iframeEl = document.getElementById('JotFormIFrame');
+
+            if (isFormConfigured) {
+                statusDot.className = "w-3 h-3 rounded-full bg-emerald-400 animate-pulse";
+                statusText.textContent = "Sambungan Aktif: Borang Rasmi Jotform Sedia Diisi";
+                iframeEl.src = formUrl;
+                iframeWrapper.classList.remove('hidden');
+                setupNotice.classList.add('hidden');
+            } else {
+                statusDot.className = "w-3 h-3 rounded-full bg-amber-400";
+                statusText.textContent = "Menunggu Konfigurasi URL Borang Jotform oleh Pentadbir";
+                setupNotice.classList.remove('hidden');
+                iframeWrapper.classList.add('hidden');
+            }
+
+            // Tetapkan pautan Admin Inbox
+            const adminLink = document.getElementById('admin-inbox-link');
+            const adminWarning = document.getElementById('admin-url-warning');
+            if (isInboxConfigured) {
+                adminLink.href = inboxUrl;
+                adminWarning.classList.add('hidden');
+            } else {
+                adminLink.href = "https://www.jotform.com/myforms/";
+                adminWarning.classList.remove('hidden');
+            }
+        }
+
+        // 3. Pelarasan Automatik Ketinggian Iframe Jotform (PostMessage Listener)
+        window.addEventListener("message", function(e) {
+            if (typeof e.data === "string" && e.data.indexOf("setHeight:") > -1) {
+                const height = e.data.split(":")[1];
+                const iframe = document.getElementById("JotFormIFrame");
+                if (iframe && height) {
+                    iframe.style.height = (parseInt(height, 10) + 40) + "px";
+                }
+            }
+        }, false);
+
+        // 4. Data Pratonton 5 Seksyen Penilaian (Seksyen A - E)
+        const sectionDetails = {
+            'A': {
+                title: 'SEKSYEN A: MAKLUMAT DIRI PENGGUNA',
+                icon: 'fa-id-card',
+                desc: 'Mengenal pasti latar belakang responden bagi analisis kesesuaian bahan mengikut tahap pendidikan.',
+                items: [
+                    '1. Nama Penuh Responden',
+                    '2. Kelas / Unit Pengajian',
+                    '3. Institusi / Sekolah (Pilihan)',
+                    '4. Kategori Pengguna: Murid, Pelajar IPG / IPT, Guru, Pensyarah, atau Lain-lain'
+                ]
+            },
+            'B': {
+                title: 'SEKSYEN B: PENILAIAN KEBERKESANAN JOTFORM (SKALA 1 - 5 BINTANG)',
+                icon: 'fa-star',
+                desc: 'Skala 1 (Sangat Tidak Memuaskan) hingga 5 (Sangat Memuaskan) bagi 7 kriteria utama:',
+                items: [
+                    '1. Tahap kejelasan dan kemudahan memahami kandungan pembelajaran',
+                    '2. Daya tarikan reka bentuk dan grafik visual Jotform',
+                    '3. Susunan maklumat yang teratur dan mudah diikuti',
+                    '4. Keberkesanan aktiviti dan permainan interaktif dalam meningkatkan kefahaman',
+                    '5. Kemudahan penggunaan melalui telefon pintar atau komputer',
+                    '6. Sumbangan bahan pembelajaran dalam memahami tajuk Berwuduk',
+                    '7. Penilaian pengalaman keseluruhan menggunakan modul ini'
+                ]
+            },
+            'C': {
+                title: 'SEKSYEN C: PENGALAMAN PEMBELAJARAN',
+                icon: 'fa-compass',
+                desc: 'Meneroka impak kognitif dan bahagian kegemaran pengguna semasa meneroka bahan:',
+                items: [
+                    '1. Tahap bantuan kefahaman tajuk berwuduk (Ya sangat membantu hingga Tidak membantu)',
+                    '2. Bahagian paling menarik minat (Nota interaktif, Dalil, Langkah berwuduk, Permainan, Kuiz, atau Keseluruhan)',
+                    '3. Pengesanan sebarang masalah teknikal atau paparan semasa penggunaan'
+                ]
+            },
+            'D': {
+                title: 'SEKSYEN D: KRITIKAN DAN CADANGAN PENAMBAHBAIKAN',
+                icon: 'fa-comments',
+                desc: 'Ruangan maklum balas terbuka untuk pandangan mendalam pengguna:',
+                items: [
+                    '1. Aspek yang paling disukai tentang Jotform pembelajaran ini',
+                    '2. Kelemahan atau kekurangan yang dikenal pasti',
+                    '3. Cadangan penambahbaikan untuk meningkatkan kualiti bahan',
+                    '4. Komen tambahan secara bebas kepada pembangun'
+                ]
+            },
+            'E': {
+                title: 'SEKSYEN E: PENILAIAN KESELURUHAN & SYOR',
+                icon: 'fa-award',
+                desc: 'Rumusan kepuasan pengguna dan kesediaan mengesyorkan bahan kepada rakan:',
+                items: [
+                    '1. Kesediaan mencadangkan Jotform pembelajaran ini kepada rakan-rakan',
+                    '2. Penarafan keseluruhan berbentuk bintang 1 hingga 5',
+                    '3. Pengesahan persetujuan privasi data sebelum penghantaran'
+                ]
+            }
+        };
+
+        function showSectionPreview(key) {
+            const data = sectionDetails[key];
+            const box = document.getElementById('section-preview-box');
+            
+            // Kemas kini gaya tab aktif
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.dataset.tab === key) {
+                    btn.className = 'tab-btn active px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 text-navy-950 transition-all shadow-md';
+                } else {
+                    btn.className = 'tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-navy-800 text-slate-300 hover:bg-navy-700 transition-all';
+                }
+            });
+
+            box.innerHTML = `
+                <div class="flex items-start gap-4">
+                    <div class="w-12 h-12 rounded-2xl icon-3d flex items-center justify-center text-cyan-300 text-xl shrink-0">
+                        <i class="fa-solid ${data.icon}"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-display font-bold text-lg text-white">${data.title}</h3>
+                        <p class="text-xs sm:text-sm text-cyan-300 mt-1 mb-4">${data.desc}</p>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                            ${data.items.map(item => `
+                                <li class="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 bg-navy-900/70 px-3.5 py-2.5 rounded-xl border border-slate-800">
+                                    <i class="fa-solid fa-circle-check text-emerald-400 mt-0.5"></i>
+                                    <span>${item}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 5. Interaksi Kad Kepentingan
+        function toggleCardHighlight(card) {
+            document.querySelectorAll('#kepentingan .glass-card').forEach(c => {
+                c.classList.remove('ring-2', 'ring-cyan-400');
+            });
+            card.classList.add('ring-2', 'ring-cyan-400');
+        }
+
+        // 6. Accordion FAQ
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                document.querySelectorAll('.faq-content').forEach(el => el.style.maxHeight = null);
+                document.querySelectorAll('#faq button i').forEach(ic => ic.style.transform = 'rotate(0deg)');
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // 7. Pengurusan Modal Admin & Panduan
+        function openAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAdminModal() {
+            const modal = document.getElementById('admin-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function openAdminGuideModal() {
+            const modal = document.getElementById('admin-guide-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeAdminGuideModal() {
+            const modal = document.getElementById('admin-guide-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // 8. Progress Bar Tatalan, Butang Scroll-To-Top & Lencana Penghargaan Pembaca
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            
+            document.getElementById('scroll-progress').style.width = scrolled + "%";
+
+            const topBtn = document.getElementById('scroll-top-btn');
+            if (winScroll > 400) {
+                topBtn.classList.remove('opacity-0', 'invisible');
+                topBtn.classList.add('opacity-100', 'visible');
+            } else {
+                topBtn.classList.add('opacity-0', 'invisible');
+                topBtn.classList.remove('opacity-100', 'visible');
+            }
+
+            // Paparkan mesej penghargaan apabila pembaca tiba di bahagian bawah
+            if (scrolled > 85) {
+                document.getElementById('reader-appreciation-badge').classList.remove('opacity-0');
+            }
+        });
+
+        // 9. Animasi Kanvas Zarah Air & Riak Halus
+        function initWaterCanvas() {
+            const canvas = document.getElementById('water-canvas');
+            const ctx = canvas.getContext('2d');
+            let width, height;
+            let particles = [];
+
+            function resize() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resize);
+            resize();
+
+            for (let i = 0; i < 38; i++) {
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    radius: Math.random() * 2.5 + 0.8,
+                    speedY: Math.random() * 0.45 + 0.15,
+                    speedX: (Math.random() - 0.5) * 0.25,
+                    alpha: Math.random() * 0.5 + 0.15
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                
+                particles.forEach(p => {
+                    p.y -= p.speedY;
+                    p.x += p.speedX;
+
+                    if (p.y < -10) {
+                        p.y = height + 10;
+                        p.x = Math.random() * width;
+                    }
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(34, 211, 238, ${p.alpha})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
